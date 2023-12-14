@@ -57,6 +57,12 @@ const config: HardhatUserConfig = {
     localhost: {
       accounts: accounts(),
     },
+    goerli: {
+      url: 'https://eth-goerli.g.alchemy.com/v2/xDggsLMWWeET5OwHaGpLrJ184Y6NOY7c', // topabomb endpoint
+      chainId: 5,
+      accounts: accounts(),
+      gasMultiplier: 1.05,
+    },
     arbitrum_goerli: {
       url: 'https://goerli-rollup.arbitrum.io/rpc',
       chainId: 421613,

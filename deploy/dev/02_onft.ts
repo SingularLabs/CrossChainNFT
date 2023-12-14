@@ -10,18 +10,21 @@ const func: DeployFunction = async function (hre: HardhatRuntimeEnvironment) {
   const { deploy } = deployments;
   const { deployer } = await getNamedAccounts();
   const chain = hre.hardhatArguments.network;
-  const lzChainName = chain == 'arbitrum_goerli' ? 'arbitrum-goerli' : undefined;
+  const lzChainName = chain == 'arbitrum_goerli' ? 'arbitrum-goerli' : chain;
   if (!chain! || !lzChainName) throw '!chain!||lzChainName';
   const lzChainId = lzChainIds[lzChainName];
   const lzEndopint = lzEndpoints[lzChainName];
   console.log(`🟢chain(${chain}),lzChainNme(${lzChainName}),lzChainId(${lzChainId}),lzEndopint(${lzEndopint})`);
 
-  const onfts = [{ collateral: 'BoredApeYachtClub', onft: 'MockOBoredApeYachtClub' }];
+  const onfts = [{ collateral: 'BoredApeYachtClub', assetChain: 'goerli', onft: 'MockOBoredApeYachtClub' }];
   for (const cfg of onfts) {
+    console.log(`deploying ${JSON.stringify(cfg)}`);
     const collateral = (await ethers.getContractAt(
       cfg.collateral,
       (await deployments.get(cfg.collateral)).address,
     )) as types.ERC721;
+    const assetAddr = cfg.assetChain == chain ? collateral.address : ethers.constants.AddressZero;
+    console.log(`🟢asset address: ${assetAddr}`);
     const onft = await deploy(cfg.onft, {
       from: deployer,
       args: [],
@@ -29,7 +32,12 @@ const func: DeployFunction = async function (hre: HardhatRuntimeEnvironment) {
       proxy: {
         proxyContract: 'OpenZeppelinTransparentProxy',
         owner: deployer,
-        execute: { init: { methodName: 'initialize', args: [collateral.address, lzEndopint] } },
+        execute: {
+          init: {
+            methodName: 'initialize',
+            args: [assetAddr, lzEndopint],
+          },
+        },
       },
     });
     console.log(`✅[${chain}]onft(${cfg.onft}).address(${onft.address})`);
