@@ -1,0 +1,10 @@
+{
+  "arbitrum_goerli": {
+    "timelock": {
+      "minDelay": 60,
+      "proposers": ["0x221aD1eF9AB7ACCc9BD86657dd63A25a9B3924b0"],
+      "executors": ["0x221aD1eF9AB7ACCc9BD86657dd63A25a9B3924b0"],
+      "admin": "0x221aD1eF9AB7ACCc9BD86657dd63A25a9B3924b0"
+    }
+  }
+}

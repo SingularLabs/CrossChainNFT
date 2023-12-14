@@ -1,0 +1,16 @@
+{
+  "singleQuote": true,
+  "semi": true,
+  "printWidth": 120,
+  "endOfLine": "auto",
+  "overrides": [
+    {
+      "files": "*.sol",
+      "options": {
+        "printWidth": 120,
+        "singleQuote": false,
+        "explicitTypes": "preserve"
+      }
+    }
+  ]
+}

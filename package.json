@@ -1,0 +1,38 @@
+{
+    "name": "CrossChainNFT",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "scripts": {
+        "build": "npx hardhat compile",
+        "test": "set TS_NODE_TRANSPILE_ONLY=1&&npx hardhat test",
+        "test:gas": "cross-env REPORT_GAS=true npx hardhat test",
+        "coverage": "npx hardhat coverage",
+        "deploy:arbitrum_goerli": "npx hardhat deploy --network arbitrum_goerli --tags dev",
+        "verify:sepolia:basic": "npx hardhat verify --network sepolia 0xa194148BB9C5670d6dE243049801AAa2cAb26224&&npx hardhat verify --network sepolia 0x507b685191023954F50F1ca707fA6D54BE79e43C&&npx hardhat verify --network sepolia 0x98802A2C4930C01BA5cB09bd6FF65e6b58AA3Cd0",
+        "verify:mainnet:timelocker": "npx hardhat verify --network mainnet_prod 0xbbeb101cC8EF794CA929E63D76e1704414503D28 --contract  contracts/CustomTimelocker.sol:CustomTimelocker --constructor-args ./constants/mainnet_arguments_CustomTimelocker.ts"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "devDependencies": {
+        "@nomicfoundation/hardhat-toolbox": "^1.0.2",
+        "@openzeppelin/contracts": "^4.7.0",
+        "@openzeppelin/contracts-upgradeable": "^4.7.0",
+        "@openzeppelin/contracts-v3.4": "npm:@openzeppelin/contracts@3.4.0",
+        "@openzeppelin/contracts-v4.4": "npm:@openzeppelin/contracts@4.4.1",
+        "@openzeppelin/hardhat-upgrades": "^1.19.0",
+        "@types/node-fetch": "^2.6.2",
+        "bignumber.js": "^9.1.1",
+        "cross-env": "^7.0.3",
+        "dotenv": "^16.0.1",
+        "eslint": "^8.38.0",
+        "hardhat": "^2.10.0",
+        "hardhat-deploy": "^0.11.11",
+        "hardhat-tracer": "^1.3.0",
+        "moment-timezone": "^0.5.34",
+        "node-fetch": "^2.6.7",
+        "openzeppelin-solidity-v2.0": "npm:openzeppelin-solidity@2.0.0",
+        "prettier-plugin-solidity": "^1.1.3"
+    }
+}
