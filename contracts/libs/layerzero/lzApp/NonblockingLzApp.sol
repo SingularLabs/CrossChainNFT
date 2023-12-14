@@ -4,6 +4,7 @@ pragma solidity ^0.8.0;
 
 import "./LzApp.sol";
 import "../libraries/ExcessivelySafeCall.sol";
+import "@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol";
 
 /*
  * the default LayerZero messaging behaviour is blocking, i.e. any failed message will block the channel
@@ -13,7 +14,11 @@ import "../libraries/ExcessivelySafeCall.sol";
 abstract contract NonblockingLzApp is LzApp {
     using ExcessivelySafeCall for address;
 
-    constructor(address _endpoint) LzApp(_endpoint) {}
+    //constructor(address _endpoint) LzApp(_endpoint) {}
+
+    function __NonblockingLzApp_init(address _endpoint) internal initializer {
+        __LzApp_init(_endpoint);
+    }
 
     mapping(uint16 => mapping(bytes => mapping(uint64 => bytes32))) public failedMessages;
 

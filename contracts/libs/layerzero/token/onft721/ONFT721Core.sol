@@ -4,10 +4,10 @@ pragma solidity ^0.8.0;
 
 import "./interfaces/IONFT721Core.sol";
 import "../../lzApp/NonblockingLzApp.sol";
-import "@openzeppelin/contracts/utils/introspection/ERC165.sol";
-import "@openzeppelin/contracts/security/ReentrancyGuard.sol";
+import "@openzeppelin/contracts-upgradeable/utils/introspection/ERC165Upgradeable.sol";
+import "@openzeppelin/contracts-upgradeable/security/ReentrancyGuardUpgradeable.sol";
 
-abstract contract ONFT721Core is NonblockingLzApp, ERC165, ReentrancyGuard, IONFT721Core {
+abstract contract ONFT721Core is NonblockingLzApp, ERC165Upgradeable, ReentrancyGuardUpgradeable, IONFT721Core {
     uint16 public constant FUNCTION_TYPE_SEND = 1;
 
     struct StoredCredit {
@@ -22,12 +22,20 @@ abstract contract ONFT721Core is NonblockingLzApp, ERC165, ReentrancyGuard, IONF
     mapping(uint16 => uint) public dstChainIdToTransferGas; // per transfer amount of gas required to mint/transfer on the dst
     mapping(bytes32 => StoredCredit) public storedCredits;
 
+    /*
     constructor(uint _minGasToTransferAndStore, address _lzEndpoint) NonblockingLzApp(_lzEndpoint) {
         require(_minGasToTransferAndStore > 0, "minGasToTransferAndStore must be > 0");
         minGasToTransferAndStore = _minGasToTransferAndStore;
+    }*/
+    function __ONFT721Core_init(uint _minGasToTransferAndStore, address _endpoint) internal initializer {
+        require(_minGasToTransferAndStore > 0, "minGasToTransferAndStore must be > 0");
+        minGasToTransferAndStore = _minGasToTransferAndStore;
+        __NonblockingLzApp_init(_endpoint);
     }
 
-    function supportsInterface(bytes4 interfaceId) public view virtual override(ERC165, IERC165) returns (bool) {
+    function supportsInterface(
+        bytes4 interfaceId
+    ) public view virtual override(ERC165Upgradeable, IERC165Upgradeable) returns (bool) {
         return interfaceId == type(IONFT721Core).interfaceId || super.supportsInterface(interfaceId);
     }
 
