@@ -15,16 +15,16 @@ const task = async (args: { onft: string; target: string }, hre: HardhatRuntimeE
   const lzSourceEndpoint = await hre.ethers.getContractAt('ILayerZeroEndpoint', lzEndpoints[lzSource]);
   const onft = await hre.ethers.getContractAt('ONFT721Base', (await hre.deployments.get(args.onft)).address);
   const lzTarget = lzName(args.target);
-  const tagertOnftAddr = getDeploymentAddresses(args.target)[args.onft];
+  const targertOnftAddr = getDeploymentAddresses(args.target)[args.onft];
   console.log(
     `🟢current chainId(${await lzSourceEndpoint.getChainId()}),source lzChainId(${
       lzChainIds[lzSource]
     }),target lzChainId(${lzChainIds[lzTarget]}),onft(${onft.address})`,
   );
-  if (!tagertOnftAddr) throw 'tagertOnftAddr is null';
+  if (!targertOnftAddr) throw 'tagertOnftAddr is null';
   const trustedRemote = await onft.trustedRemoteLookup(lzChainIds[lzTarget]);
   if (trustedRemote == '0x') {
-    const params = hre.ethers.utils.solidityPack(['address', 'address'], [tagertOnftAddr, onft.address]);
+    const params = hre.ethers.utils.solidityPack(['address', 'address'], [targertOnftAddr, onft.address]);
     const tx = await onft.setTrustedRemote(lzChainIds[lzTarget], params);
     console.log(
       `🟢onft.setTrustedRemote pending...tx:${tx.hash},lzChainId(${lzChainIds[lzTarget]}),trustedRemote:{${params}}`,
