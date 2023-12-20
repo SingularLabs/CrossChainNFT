@@ -21,15 +21,19 @@ const task = async (args: { onft: string; target: string }, hre: HardhatRuntimeE
   const lzTarget = lzName(args.target);
   const targertOnftAddr = getDeploymentAddresses(args.target)[args.onft];
 
-  const tokenId = 0;
+  const tokenId = 5;
   try {
     await nft.tokenURI(tokenId);
   } catch (err) {
     if ((err as Error).message.includes('ERC721: invalid token ID')) {
       await (await nft.mint(deployer, tokenId, { value: hre.ethers.utils.parseEther('0.1') })).wait();
-    }
-    throw err;
+    } else throw err;
   }
+  await new Promise((resolve) => {
+    setTimeout(() => {
+      resolve(true);
+    }, 1000);
+  });
   if ((await nft.ownerOf(tokenId)) == deployer) {
     const nativeFee = (await onft.estimateSendFee(lzChainIds[lzTarget], deployer, tokenId, false, defaultAdapterParams))
       .nativeFee;

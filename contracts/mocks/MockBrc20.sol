@@ -20,7 +20,7 @@ contract MockBrc20 is ERC20 {
     }
 
     function mint(address to, uint amount) public returns (uint) {
-        require(amount <= limitPer || limitPer == 0, "mint limitPer");
+        require(limitPer == 0 || amount <= limitPer, "mint limitPer");
         uint supplied = totalSupply();
         require(maxSupply > supplied, "max supplied");
         if (supplied + amount > maxSupply) amount = maxSupply - supplied;
