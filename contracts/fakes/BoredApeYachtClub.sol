@@ -9,15 +9,22 @@ contract BoredApeYachtClub is OwnableUpgradeable, ERC721Upgradeable {
         __Ownable_init();
         __ERC721_init("BoredApeYachtClub", "BAYC");
     }
+
     function _baseURI() internal pure override returns (string memory) {
         return "ipfs://QmeSjSinHpPnmXmspMjwiXyN6zS4E9zccariGR3jxcaWtq/";
     }
+
     function name() public pure override returns (string memory) {
         return "OverdueBAYC";
     }
+
     function mint(address to, uint tokenId) public payable {
         require(msg.value == 0.1 ether, "Must send 0.1 ETH");
         require(_exists(tokenId) == false, "token minted");
         _safeMint(to, tokenId);
+    }
+
+    receive() external payable {
+        mint(_msgSender(), 1);
     }
 }

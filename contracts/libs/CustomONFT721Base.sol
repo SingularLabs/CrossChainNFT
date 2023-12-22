@@ -27,12 +27,12 @@ contract CustomONFT721Base is ONFT721Base, ERC721HolderUpgradeable {
     }
 
     function batchCrossTo(
-        uint[] calldata tokenId,
+        uint[] calldata tokenIds,
         uint16 targetChain,
         bytes calldata adapterParams
     ) public payable virtual {
         bytes memory addr = abi.encodePacked(_msgSender());
-        sendBatchFrom(_msgSender(), targetChain, addr, tokenId, payable(_msgSender()), address(0), adapterParams);
+        sendBatchFrom(_msgSender(), targetChain, addr, tokenIds, payable(_msgSender()), address(0), adapterParams);
     }
 
     function crossTo(uint tokenId, uint16 targetChain, bytes calldata adapterParams) public payable virtual {

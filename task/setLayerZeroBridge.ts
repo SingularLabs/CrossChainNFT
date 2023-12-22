@@ -31,9 +31,10 @@ const task = async (args: { onft: string; target: string }, hre: HardhatRuntimeE
     );
     await tx.wait();
   } else console.log(`✅trustedRemote:${trustedRemote}`);
-  const batchLimit = await onft.dstChainIdToBatchLimit(lzChainIds[lzSource]);
-  if (batchLimit.eq(0)) {
-    const tx = await onft.setDstChainIdToBatchLimit(lzChainIds[lzTarget], 300);
+  const BATCH_LIMIT = 300;
+  const batchLimit = await onft.dstChainIdToBatchLimit(lzChainIds[lzTarget]);
+  if (!batchLimit.eq(BATCH_LIMIT)) {
+    const tx = await onft.setDstChainIdToBatchLimit(lzChainIds[lzTarget], BATCH_LIMIT);
     console.log(`🟢onft.setDstChainIdToBatchLimit pending...tx:${tx.hash},lzChainId(${lzChainIds[lzTarget]})`);
     await tx.wait();
   } else console.log(`✅batchLimit:${batchLimit}`);
