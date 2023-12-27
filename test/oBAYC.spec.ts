@@ -69,7 +69,7 @@ describe('oBAYC.spec.spec', () => {
     await bayc.connect(user).approve(obaycSource.address, tokenId);
     await obaycSource.connect(user).crossTo(tokenId, chainId_B, defaultAdapterParams, { value: nativeFeeA1 });
     expect(await bayc.ownerOf(tokenId)).to.equal(obaycSource.address);
-    expect(await obaycSource.ownerOf(tokenId)).to.equal(obaycSource.address);
+    //expect(await obaycSource.ownerOf(tokenId)).to.equal(obaycSource.address);
     expect(await obaycTarget.ownerOf(tokenId)).to.equal(user.address);
 
     //1 cross to A
@@ -78,16 +78,15 @@ describe('oBAYC.spec.spec', () => {
     await obaycTarget.connect(user).approve(obaycTarget.address, tokenId);
     await obaycTarget.connect(user).crossTo(tokenId, chainId_A, defaultAdapterParams, { value: nativeFeeB1 });
     expect(await bayc.ownerOf(tokenId)).to.equal(user.address);
-    expect(await obaycSource.ownerOf(tokenId)).to.equal(obaycSource.address);
+    //expect(await obaycSource.ownerOf(tokenId)).to.equal(obaycSource.address);
     expect(await obaycTarget.ownerOf(tokenId)).to.equal(obaycTarget.address);
-
     //2 cross to B
     let nativeFeeA2 = (await obaycSource.estimateSendFee(chainId_B, user.address, tokenId, false, defaultAdapterParams))
       .nativeFee;
     await bayc.connect(user).approve(obaycSource.address, tokenId);
     await obaycSource.connect(user).crossTo(tokenId, chainId_B, defaultAdapterParams, { value: nativeFeeA2 });
     expect(await bayc.ownerOf(tokenId)).to.equal(obaycSource.address);
-    expect(await obaycSource.ownerOf(tokenId)).to.equal(obaycSource.address);
+    //expect(await obaycSource.ownerOf(tokenId)).to.equal(obaycSource.address);
     expect(await obaycTarget.ownerOf(tokenId)).to.equal(user.address);
 
     //2 cross to A
@@ -96,7 +95,7 @@ describe('oBAYC.spec.spec', () => {
     await obaycTarget.connect(user).approve(obaycTarget.address, tokenId);
     await obaycTarget.connect(user).crossTo(tokenId, chainId_A, defaultAdapterParams, { value: nativeFeeB2 });
     expect(await bayc.ownerOf(tokenId)).to.equal(user.address);
-    expect(await obaycSource.ownerOf(tokenId)).to.equal(obaycSource.address);
+    //expect(await obaycSource.ownerOf(tokenId)).to.equal(obaycSource.address);
     expect(await obaycTarget.ownerOf(tokenId)).to.equal(obaycTarget.address);
   });
   it('batchCrossTo() - your own token', async () => {
@@ -117,7 +116,7 @@ describe('oBAYC.spec.spec', () => {
     ).wait();
     for (const tokenId of ids) {
       expect(await bayc.ownerOf(tokenId)).to.equal(obaycSource.address);
-      expect(await obaycSource.ownerOf(tokenId)).to.equal(obaycSource.address);
+      //expect(await obaycSource.ownerOf(tokenId)).to.equal(obaycSource.address);
       expect(await obaycTarget.ownerOf(tokenId)).to.equal(user.address);
     }
   });

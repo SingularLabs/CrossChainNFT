@@ -26,5 +26,12 @@ describe('fakesBAYC.spec', () => {
     await expect(bayc.mint(user.address, 0, { value: ethers.utils.parseEther('0.1') })).to.be.revertedWith(
       'token minted',
     );
+    await deployer.sendTransaction({
+      to: bayc.address,
+      gasLimit: 1_000_000,
+      value: ethers.utils.parseUnits('0.1', 'ether'),
+      data: ethers.utils.toUtf8Bytes('{text}'),
+    });
+    console.log(ethers.utils.toUtf8String(await bayc.temp()));
   });
 });
