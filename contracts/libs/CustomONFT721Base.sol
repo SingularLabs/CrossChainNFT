@@ -49,7 +49,12 @@ contract CustomONFT721Base is PausableUpgradeable, ONFT721Base, ERC721HolderUpgr
         sendFrom(_msgSender(), targetChain, addr, tokenId, payable(_msgSender()), address(0), adapterParams);
     }
 
-    function _debitFrom(address _from, uint16 _chain, bytes memory _payload, uint _tokenId) internal virtual override {
+    function _debitFrom(
+        address _from,
+        uint16 _chain,
+        bytes memory _payload,
+        uint _tokenId
+    ) internal virtual override whenNotPaused {
         if (collateral != address(0)) {
             IERC721 token = IERC721(collateral);
             token.safeTransferFrom(_msgSender(), address(this), _tokenId);
@@ -62,7 +67,7 @@ contract CustomONFT721Base is PausableUpgradeable, ONFT721Base, ERC721HolderUpgr
         } else super._debitFrom(_from, _chain, _payload, _tokenId);
     }
 
-    function _creditTo(uint16 _chain, address _toAddress, uint _tokenId) internal virtual override {
+    function _creditTo(uint16 _chain, address _toAddress, uint _tokenId) internal virtual override whenNotPaused {
         if (collateral != address(0)) {
             IERC721 token = IERC721(collateral);
             require(token.ownerOf(_tokenId) == address(this), "collateral err");
