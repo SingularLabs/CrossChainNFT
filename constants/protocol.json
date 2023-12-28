@@ -30,7 +30,7 @@
   "arbitrum_prod": {
     "admin": "0x1A3bEc8133037f955d7e1F438D3E9d34e0d4E94A",
     "timelock": {
-      "minDelay": 60,
+      "minDelay": 86400,
       "proposers": ["0x1A3bEc8133037f955d7e1F438D3E9d34e0d4E94A"],
       "executors": ["0x1A3bEc8133037f955d7e1F438D3E9d34e0d4E94A"],
       "admin": "0x1A3bEc8133037f955d7e1F438D3E9d34e0d4E94A"
