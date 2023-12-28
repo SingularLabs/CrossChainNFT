@@ -1,5 +1,15 @@
 {
   "arbitrum_goerli": {
+    "admin": "0x1A3bEc8133037f955d7e1F438D3E9d34e0d4E94A",
+    "timelock": {
+      "minDelay": 60,
+      "proposers": ["0x1A3bEc8133037f955d7e1F438D3E9d34e0d4E94A"],
+      "executors": ["0x1A3bEc8133037f955d7e1F438D3E9d34e0d4E94A"],
+      "admin": "0x1A3bEc8133037f955d7e1F438D3E9d34e0d4E94A"
+    }
+  },
+  "goerli": {
+    "admin": "0x221aD1eF9AB7ACCc9BD86657dd63A25a9B3924b0",
     "timelock": {
       "minDelay": 60,
       "proposers": ["0x221aD1eF9AB7ACCc9BD86657dd63A25a9B3924b0"],
@@ -7,12 +17,23 @@
       "admin": "0x221aD1eF9AB7ACCc9BD86657dd63A25a9B3924b0"
     }
   },
-  "goerli": {
+
+  "mainnet_prod": {
+    "admin": "0x221aD1eF9AB7ACCc9BD86657dd63A25a9B3924b0",
     "timelock": {
-      "minDelay": 60,
+      "minDelay": 86400,
       "proposers": ["0x221aD1eF9AB7ACCc9BD86657dd63A25a9B3924b0"],
       "executors": ["0x221aD1eF9AB7ACCc9BD86657dd63A25a9B3924b0"],
       "admin": "0x221aD1eF9AB7ACCc9BD86657dd63A25a9B3924b0"
+    }
+  },
+  "arbitrum_prod": {
+    "admin": "0x1A3bEc8133037f955d7e1F438D3E9d34e0d4E94A",
+    "timelock": {
+      "minDelay": 60,
+      "proposers": ["0x1A3bEc8133037f955d7e1F438D3E9d34e0d4E94A"],
+      "executors": ["0x1A3bEc8133037f955d7e1F438D3E9d34e0d4E94A"],
+      "admin": "0x1A3bEc8133037f955d7e1F438D3E9d34e0d4E94A"
     }
   }
 }

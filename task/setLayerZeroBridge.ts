@@ -6,7 +6,13 @@ import jsonEndpoints from '../constants/layerzeroEndpoints.json';
 const lzChainIds = jsonChainIds as Record<string, number>;
 const lzEndpoints = jsonEndpoints as Record<string, any>;
 const lzName = (name: string) => {
-  return name == 'arbitrum_goerli' ? 'arbitrum-goerli' : name;
+  return name == 'arbitrum_prod'
+    ? 'arbitrum'
+    : name == 'mainnet_prod'
+      ? 'ethereum'
+      : name == 'arbitrum_goerli'
+        ? 'arbitrum-goerli'
+        : name;
 };
 const task = async (args: { onft: string; target: string }, hre: HardhatRuntimeEnvironment) => {
   console.log(`🟢setLayerZeroBridge,onft(${args.onft}),source(${hre.network.name}),target(${args.target})`);

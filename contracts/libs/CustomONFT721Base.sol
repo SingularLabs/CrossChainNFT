@@ -5,9 +5,11 @@ import "./layerzero/token/onft721/ONFT721Base.sol";
 import "@openzeppelin/contracts-upgradeable/token/ERC721/utils/ERC721HolderUpgradeable.sol";
 import "@openzeppelin/contracts/token/ERC721/IERC721.sol";
 import "@openzeppelin/contracts-upgradeable/security/PausableUpgradeable.sol";
+import "@openzeppelin/contracts/token/ERC721/extensions/IERC721Metadata.sol";
 
 contract CustomONFT721Base is PausableUpgradeable, ONFT721Base, ERC721HolderUpgradeable {
     address public collateral;
+
     uint256[49] private __gap;
 
     function __CustomONFT721Base_init(
@@ -21,15 +23,6 @@ contract CustomONFT721Base is PausableUpgradeable, ONFT721Base, ERC721HolderUpgr
         __ONFT721Base_init(_name, _symbol, _minGasToTransfer, _lzEndpoint);
         collateral = _collateral;
     }
-
-    /*
-    function rawOwnerOf(uint tokenId) public view returns (address) {
-        if (_exists(tokenId)) {
-            return ownerOf(tokenId);
-        }
-        return address(0);
-    }
-    */
 
     function batchCrossTo(
         uint[] calldata tokenIds,
@@ -78,11 +71,16 @@ contract CustomONFT721Base is PausableUpgradeable, ONFT721Base, ERC721HolderUpgr
         }
     }
 
-    function Pause() public onlyOwner {
+    function Pause() public onlyOwner whenNotPaused {
         _pause();
     }
 
-    function Resume() public onlyOwner {
+    function Resume() public onlyOwner whenPaused {
         _unpause();
+    }
+
+    function tokenURI(uint tokenId) public view override returns (string memory) {
+        if (collateral != address(0)) return IERC721Metadata(collateral).tokenURI(tokenId);
+        else return super.tokenURI(tokenId);
     }
 }

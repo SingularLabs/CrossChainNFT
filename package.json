@@ -13,6 +13,11 @@
     "set_bridge:arbitrum_goerli:bayc": "npx hardhat set_bridge --onft MockOBoredApeYachtClub --target goerli --network arbitrum_goerli",
     "set_bridge:goerli:bayc": "npx hardhat set_bridge --onft MockOBoredApeYachtClub --target arbitrum_goerli --network goerli",
     "deploy:dev:bayc": "npm run deploy:arbitrum_goerli&&npm run deploy:goerli&&npm run set_bridge:arbitrum_goerli:bayc&&npm run set_bridge:goerli:bayc",
+    "deploy:mainnet_prod:ghost": "npx hardhat deploy --network mainnet_prod --tags prod_ghost",
+    "deploy:arbitrum_prod:ghost": "npx hardhat deploy --network arbitrum_prod --tags prod_ghost",
+    "set_bridge:arbitrum_prod:ghost": "npx hardhat set_bridge --onft prod_GHOST --target mainnet_prod --network arbitrum_prod",
+    "set_bridge:mainnet_prod:ghost": "npx hardhat set_bridge --onft prod_GHOST --target arbitrum_prod --network mainnet_prod",
+    "deploy:prod:ghost": "npm run deploy:mainnet_prod:ghost&&npm run deploy:arbitrum_prod:ghost&&npm run set_bridge:arbitrum_prod:ghost&&npm run set_bridge:mainnet_prod:ghost",
     "verify:sepolia:basic": "npx hardhat verify --network sepolia 0xa194148BB9C5670d6dE243049801AAa2cAb26224&&npx hardhat verify --network sepolia 0x507b685191023954F50F1ca707fA6D54BE79e43C&&npx hardhat verify --network sepolia 0x98802A2C4930C01BA5cB09bd6FF65e6b58AA3Cd0",
     "verify:mainnet:timelocker": "npx hardhat verify --network mainnet_prod 0xbbeb101cC8EF794CA929E63D76e1704414503D28 --contract  contracts/CustomTimelocker.sol:CustomTimelocker --constructor-args ./constants/mainnet_arguments_CustomTimelocker.ts"
   },

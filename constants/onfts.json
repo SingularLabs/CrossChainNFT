@@ -1,0 +1,7 @@
+{
+  "GHOST": {
+    "collateral": "0x9401518f4EBBA857BAA879D9f76E1Cc8b31ed197",
+    "assetChain": "mainnet_prod",
+    "onft": "prod_GHOST"
+  }
+}
