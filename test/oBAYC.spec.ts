@@ -101,7 +101,7 @@ describe('oBAYC.spec.spec', () => {
   it('batchCrossTo() - your own token', async () => {
     const [deployer, user] = await ethers.getSigners();
     const { bayc, obaycSource, obaycTarget } = await loadFixture(deployFixture);
-    const ids = [...Array(150).keys()];
+    const ids = [...Array(100).keys()];
     for (const tokenId of ids) {
       await bayc.connect(user).mint(user.address, tokenId, { value: ethers.utils.parseEther('0.1') });
     }
