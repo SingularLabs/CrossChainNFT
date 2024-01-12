@@ -8,6 +8,6 @@ contract WFROG is OrdAssetWrapBase {
     }
 
     function _baseURI() internal pure override returns (string memory) {
-        return "ipfs://bafybeifybw5ubyep4x4cdycqnbwubuhkuapimor4m4n726k4goajcbxfwm";
+        return "ipfs://bafybeifybw5ubyep4x4cdycqnbwubuhkuapimor4m4n726k4goajcbxfwm/";
     }
 }
