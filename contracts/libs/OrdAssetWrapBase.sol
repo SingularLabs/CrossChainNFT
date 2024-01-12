@@ -39,7 +39,7 @@ contract OrdAssetWrapBase is
         if (!_exists(tokenId)) {
             _safeMint(to, tokenId);
         } else {
-            require(ownerOf(tokenId) == address(this));
+            require(ownerOf(tokenId) == address(this), "not pledged");
             safeTransferFrom(address(this), to, tokenId);
         }
     }
