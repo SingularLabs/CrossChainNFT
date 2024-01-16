@@ -46,8 +46,10 @@ contract OrdAssetWrapBase is
         }
     }
 
-    function crossToOrd(string calldata to, uint tokenId) public whenNotPaused nonReentrant {
-        safeTransferFrom(_msgSender(), address(this), tokenId);
-        emit CrossToOrd(_msgSender(), to, tokenId);
+    function crossToOrd(string calldata to, uint[] calldata tokenIds) public whenNotPaused nonReentrant {
+        for (uint i = 0; i < tokenIds.length; i++) {
+            safeTransferFrom(_msgSender(), address(this), tokenIds[i]);
+            emit CrossToOrd(_msgSender(), to, tokenIds[i]);
+        }
     }
 }
