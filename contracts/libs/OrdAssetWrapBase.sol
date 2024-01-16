@@ -16,6 +16,8 @@ contract OrdAssetWrapBase is
     ERC721EnumerableUpgradeable,
     ERC721HolderUpgradeable
 {
+    event CrossToOrd(address indexed from, string indexed to, uint256 indexed tokenId);
+
     address public executor;
 
     function __OrdAssetWrapBase_init(string memory _name, string memory _symbol, address _executor) public initializer {
@@ -44,7 +46,8 @@ contract OrdAssetWrapBase is
         }
     }
 
-    function crossToOrd(address to, uint tokenId) public whenNotPaused nonReentrant {
-        safeTransferFrom(to, address(this), tokenId);
+    function crossToOrd(string calldata to, uint tokenId) public whenNotPaused nonReentrant {
+        safeTransferFrom(_msgSender(), address(this), tokenId);
+        emit CrossToOrd(_msgSender(), to, tokenId);
     }
 }
