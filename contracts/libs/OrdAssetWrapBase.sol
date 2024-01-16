@@ -42,7 +42,7 @@ contract OrdAssetWrapBase is
             _safeMint(to, tokenId);
         } else {
             require(ownerOf(tokenId) == address(this), "not pledged");
-            safeTransferFrom(address(this), to, tokenId);
+            _safeTransfer(address(this), to, tokenId, "");
         }
     }
 
