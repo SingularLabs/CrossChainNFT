@@ -40,6 +40,8 @@ const func: DeployFunction = async function (hre: HardhatRuntimeEnvironment) {
         },
       },
     });
+    const instance = await ethers.getContractAt('CustomONFT721Base', onft.address);
+    console.log(await instance.lzEndpoint(), lzEndopint);
     console.log(`✅[${chain}]onft(${cfg.onft}).address(${onft.address})`);
   }
 };

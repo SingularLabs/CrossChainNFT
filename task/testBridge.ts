@@ -27,7 +27,7 @@ const task = async (args: { onft: string; target: string }, hre: HardhatRuntimeE
   const lzTarget = lzName(args.target);
   const targertOnftAddr = getDeploymentAddresses(args.target)[args.onft];
 
-  const tokenId = 5;
+  const tokenId = 6;
   try {
     await nft.tokenURI(tokenId);
   } catch (err) {

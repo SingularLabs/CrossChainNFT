@@ -85,6 +85,12 @@ const config: HardhatUserConfig = {
       accounts: accounts(),
       gasMultiplier: 1.05,
     },
+    arbitrum_sepolia: {
+      url: 'https://sepolia-rollup.arbitrum.io/rpc',
+      chainId: 421614,
+      accounts: accounts(),
+      gasMultiplier: 1.05,
+    },
   },
   gasReporter: {
     enabled: process.env.REPORT_GAS ? true : false,

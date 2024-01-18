@@ -16,11 +16,20 @@ const lzName = (name: string) => {
 };
 const task = async (args: { onft: string; target: string }, hre: HardhatRuntimeEnvironment) => {
   const { deployer } = await hre.getNamedAccounts();
-  /*
-  const asset = await hre.ethers.getContractAt('OrdAssetWrapBase', '0x6E932393aF2498CfD784FB99f8992A7167B8392b');
-  console.log(await asset.ownerOf(1));
 
-  return;*/
+  const asset = await hre.ethers.getContractAt('CustomONFT721Base', '0x5482f251547aac76F75bf087E0AeA00Cd353Eb1b');
+  console.log(await asset.lzEndpoint());
+  for (const id in [...Array(10000)]) {
+    console.log(id);
+    try {
+      const owner = await asset.ownerOf(id);
+      console.log(id, owner);
+    } catch (err) {
+      if (!(err as Error).message.indexOf('ERC721: invalid token ID')) throw err;
+    }
+  }
+
+  return;
   const lzSource = lzName(hre.network.name);
   const lzSourceEndpoint = await hre.ethers.getContractAt('ILayerZeroEndpoint', lzEndpoints[lzSource]);
   const onft = await hre.ethers.getContractAt('ONFT721Base', (await hre.deployments.get(args.onft)).address);
