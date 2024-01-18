@@ -10,7 +10,7 @@ const func: DeployFunction = async function (hre: HardhatRuntimeEnvironment) {
   const { deploy } = deployments;
   const { deployer } = await getNamedAccounts();
   const chain = hre.hardhatArguments.network;
-  const lzChainName = chain == 'arbitrum_goerli' ? 'arbitrum-goerli' : chain;
+  const lzChainName = chain == 'arbitrum_sepolia' ? 'arbitrum-sepolia' : chain;
   if (!chain! || !lzChainName) throw '!chain!||lzChainName';
   const lzChainId = lzChainIds[lzChainName];
   const lzEndopint = lzEndpoints[lzChainName];

@@ -10,8 +10,8 @@ const lzName = (name: string) => {
     ? 'arbitrum'
     : name == 'mainnet_prod'
       ? 'ethereum'
-      : name == 'arbitrum_goerli'
-        ? 'arbitrum-goerli'
+      : name == 'arbitrum_sepolia'
+        ? 'arbitrum-sepolia'
         : name;
 };
 const task = async (args: { onft: string; target: string }, hre: HardhatRuntimeEnvironment) => {
