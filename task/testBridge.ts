@@ -10,8 +10,8 @@ const lzName = (name: string) => {
     ? 'arbitrum'
     : name == 'mainnet_prod'
       ? 'ethereum'
-      : name == 'arbitrum_goerli'
-        ? 'arbitrum-goerli'
+      : name == 'arbitrum_sepolia'
+        ? 'arbitrum-sepolia'
         : name;
 };
 const task = async (args: { onft: string; target: string }, hre: HardhatRuntimeEnvironment) => {
@@ -27,7 +27,7 @@ const task = async (args: { onft: string; target: string }, hre: HardhatRuntimeE
   const lzTarget = lzName(args.target);
   const targertOnftAddr = getDeploymentAddresses(args.target)[args.onft];
 
-  const tokenId = 6;
+  const tokenId = 7;
   try {
     await nft.tokenURI(tokenId);
   } catch (err) {
@@ -48,7 +48,7 @@ const task = async (args: { onft: string; target: string }, hre: HardhatRuntimeE
     const tx = await onft.crossTo(tokenId, lzChainIds[lzTarget], defaultAdapterParams, { value: nativeFee });
     console.log(`🟢onft.crossTo pending...tx:${tx.hash}`);
   } else {
-    const provider = new hre.ethers.providers.JsonRpcProvider('https://goerli-rollup.arbitrum.io/rpc');
+    const provider = new hre.ethers.providers.JsonRpcProvider('https://sepolia-rollup.arbitrum.io/rpc');
     const targetNft = new hre.ethers.Contract(
       targertOnftAddr,
       (await hre.deployments.get(args.onft)).abi,

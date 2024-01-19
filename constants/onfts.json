@@ -3,5 +3,20 @@
     "collateral": "0x9401518f4EBBA857BAA879D9f76E1Cc8b31ed197",
     "assetChain": "mainnet_prod",
     "onft": "prod_GHOST"
+  },
+  "MFER": {
+    "collateral": "0x79FCDEF22feeD20eDDacbB2587640e45491b757f",
+    "assetChain": "mainnet_prod",
+    "onft": "prod_MFER"
+  },
+  "BEANZ": {
+    "collateral": "0x306b1ea3ecdf94aB739F1910bbda052Ed4A9f949",
+    "assetChain": "mainnet_prod",
+    "onft": "prod_BEANZ"
+  },
+  "ELEM": {
+    "collateral": "0xB6a37b5d14D502c3Ab0Ae6f3a0E058BC9517786e",
+    "assetChain": "mainnet_prod",
+    "onft": "prod_ELEM"
   }
 }

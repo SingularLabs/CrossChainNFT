@@ -44,5 +44,5 @@ const func: DeployFunction = async function (hre: HardhatRuntimeEnvironment) {
     console.log(`✅[${chain}]onft(${cfg.onft}).address(${onft.address})`);
   }
 };
-func.tags = ['prod_ghost'];
+func.tags = ['prod_onfts'];
 export default func;
