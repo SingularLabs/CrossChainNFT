@@ -21,6 +21,7 @@ const task = async (args: { onft: string; target: string }, hre: HardhatRuntimeE
     args.onft,
     (await hre.deployments.get(args.onft)).address,
   )) as types.CustomONFT721Base;
+  console.log(`onft(${await onft.name()})`);
   const nftAddr = await onft.collateral();
   const nft = await hre.ethers.getContractAt('BoredApeYachtClub', nftAddr);
   console.log(`nft(${nft.address}),name(${await nft.name()})`);
@@ -29,7 +30,7 @@ const task = async (args: { onft: string; target: string }, hre: HardhatRuntimeE
 
   const tokenId = 7;
   try {
-    await nft.tokenURI(tokenId);
+    console.log(await nft.tokenURI(tokenId), await nft.ownerOf(tokenId));
   } catch (err) {
     if ((err as Error).message.includes('ERC721: invalid token ID')) {
       await (await nft.mint(deployer, tokenId, { value: hre.ethers.utils.parseEther('0.1') })).wait();
