@@ -47,7 +47,7 @@ contract OrdAssetWrapBase is
     }
 
     function crossToOrd(string calldata to, uint[] calldata tokenIds) public payable whenNotPaused nonReentrant {
-        require(msg.value > tokenIds.length * 0.0001 ether, "need cross gas");
+        require(msg.value > tokenIds.length * 0.002 ether, "need cross gas");
         for (uint i = 0; i < tokenIds.length; i++) {
             safeTransferFrom(_msgSender(), address(this), tokenIds[i]);
             emit CrossToOrd(_msgSender(), to, tokenIds[i]);

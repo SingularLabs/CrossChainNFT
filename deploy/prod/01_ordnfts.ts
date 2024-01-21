@@ -34,5 +34,5 @@ const func: DeployFunction = async function (hre: HardhatRuntimeEnvironment) {
     }
   }
 };
-func.tags = ['dev'];
+func.tags = ['prod_ordnfts'];
 export default func;

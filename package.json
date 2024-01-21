@@ -15,6 +15,7 @@
     "deploy:dev:bayc": "npm run deploy:arbitrum_sepolia&&npm run deploy:goerli&&npm run set_bridge:arbitrum_sepolia:bayc&&npm run set_bridge:goerli:bayc",
     "deploy:mainnet_prod:onfts": "npx hardhat deploy --network mainnet_prod --tags prod_onfts",
     "deploy:arbitrum_prod:onfts": "npx hardhat deploy --network arbitrum_prod --tags prod_onfts",
+    "deploy:arbitrum_prod:ordnfts": "npx hardhat deploy --network arbitrum_prod --tags prod_ordnfts",
     "set_bridge:arbitrum_prod:ghost": "npx hardhat set_bridge --onft prod_GHOST --target mainnet_prod --network arbitrum_prod",
     "set_bridge:mainnet_prod:ghost": "npx hardhat set_bridge --onft prod_GHOST --target arbitrum_prod --network mainnet_prod",
     "deploy:prod:ghost": "npm run deploy:mainnet_prod:ghost&&npm run deploy:arbitrum_prod:ghost&&npm run set_bridge:arbitrum_prod:ghost&&npm run set_bridge:mainnet_prod:ghost",
