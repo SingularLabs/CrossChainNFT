@@ -30,7 +30,10 @@ const func: DeployFunction = async function (hre: HardhatRuntimeEnvironment) {
     const ordnftInstance = (await ethers.getContractAt(cfg.nft, ordnft.address)) as types.OrdAssetWrapBase;
     if ((await ordnftInstance.executor()) != cfg.executor) {
       const tx = await ordnftInstance.setExecutor(ethers.utils.getAddress(cfg.executor));
+      console.log(`✅[${chain}]ordnft(${cfg.nft}) setExecutor(${cfg.executor}) pending...`);
       const resp = await tx.wait();
+    } else {
+      console.log(`✅[${chain}]ordnft(${cfg.nft}) executor(${await ordnftInstance.executor()})`);
     }
   }
 };
