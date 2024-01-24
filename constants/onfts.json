@@ -28,5 +28,10 @@
     "collateral": "0xBd3531dA5CF5857e7CfAA92426877b022e612cf8",
     "assetChain": "mainnet_prod",
     "onft": "prod_PPG"
+  },
+  "MAYC": {
+    "collateral": "0x60E4d786628Fea6478F785A6d7e704777c86a7c6",
+    "assetChain": "mainnet_prod",
+    "onft": "prod_MAYC"
   }
 }
