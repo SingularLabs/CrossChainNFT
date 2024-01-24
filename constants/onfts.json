@@ -18,5 +18,10 @@
     "collateral": "0xB6a37b5d14D502c3Ab0Ae6f3a0E058BC9517786e",
     "assetChain": "mainnet_prod",
     "onft": "prod_ELEM"
+  },
+  "BAYC": {
+    "collateral": "0xBC4CA0EdA7647A8aB7C2061c2E118A18a936f13D",
+    "assetChain": "mainnet_prod",
+    "onft": "prod_BAYC"
   }
 }
