@@ -32,7 +32,6 @@ contract GoldenChipmunk is PausableUpgradeable, ONFT721Base, ERC721HolderUpgrade
     }
 
     //--- OrdAssetWrapBase
-
     modifier onlyExecutor() {
         require(_msgSender() == executor);
         _;

@@ -40,5 +40,7 @@ describe('gcm.spec', () => {
     const signature = await executor.signMessage(ethers.utils.arrayify(hash));
     console.log(signature);
     await instance.mint(toAddr, tokenId, price, signature, { value: price });
+
+    expect(await instance.ownerOf(tokenId)).to.equal(toAddr);
   });
 });
