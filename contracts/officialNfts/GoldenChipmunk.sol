@@ -24,11 +24,11 @@ contract GoldenChipmunk is PausableUpgradeable, ONFT721Base, ERC721HolderUpgrade
     }
 
     function _baseURI() internal pure override returns (string memory) {
-        return "ipfs://bafybeieczsni3noxdebwny7tc2virpnx66vkw4suigqmgr7vi5yf46ke2q/";
+        return "ipfs://bafybeide4cqbbw57lba7ombmjn6yskpvihuyjdoqqgp4z2ojtmgzra2ogq/";
     }
 
     function isEthAsset(uint tokenId) public pure returns (bool) {
-        return tokenId <= 3999 && tokenId >= 2000;
+        return tokenId <= 4999 && tokenId >= 2000;
     }
 
     //--- OrdAssetWrapBase
@@ -93,6 +93,15 @@ contract GoldenChipmunk is PausableUpgradeable, ONFT721Base, ERC721HolderUpgrade
     }
 
     //--- CustomONFT721Base
+    function batchCrossTo(
+        uint[] calldata tokenIds,
+        uint16 targetChain,
+        bytes calldata adapterParams
+    ) public payable virtual nonReentrant whenNotPaused {
+        bytes memory addr = abi.encodePacked(_msgSender());
+        sendBatchFrom(_msgSender(), targetChain, addr, tokenIds, payable(_msgSender()), address(0), adapterParams);
+    }
+
     function crossTo(
         uint tokenId,
         uint16 targetChain,
