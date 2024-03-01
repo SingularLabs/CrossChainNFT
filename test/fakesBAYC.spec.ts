@@ -3,7 +3,7 @@ import { time, loadFixture } from '@nomicfoundation/hardhat-network-helpers';
 import { anyValue } from '@nomicfoundation/hardhat-chai-matchers/withArgs';
 import { expect } from 'chai';
 import { ethers, upgrades, tracer } from 'hardhat';
-const enabledRracer = true; //是否启用代码内的tracer
+const enabledRracer = true;
 describe('fakesBAYC.spec', () => {
   async function deployFixture() {
     const BoredApeYachtClub = await ethers.getContractFactory('BoredApeYachtClub');

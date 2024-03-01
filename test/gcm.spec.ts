@@ -6,7 +6,7 @@ import * as types from '../typechain-types';
 import { ethers, upgrades, tracer } from 'hardhat';
 const chainId_A = 1;
 const chainId_B = 2;
-const enabledRracer = true; //是否启用代码内的tracer
+const enabledRracer = true;
 describe('gcm.spec', () => {
   async function deployFixture() {
     const LZEndpointMock = await ethers.getContractFactory('LZEndpointMock');
